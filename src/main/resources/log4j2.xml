@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <Property name="basePath">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout   pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %c{1} %t %L - %msg%n" />
+        </Console>
+
+        <RollingFile name="Main" fileName="${basePath}/AppiumDemo.log" filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log">
+
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+
+        <Logger name="appiumdemo.appiumdemo.AppiumDemo" level="debug" additivity="true">
+            <Appender-ref ref="Main" level="debug" />
+        </Logger>
+
+        <Root level="debug" additivity="false">
+            <appender-ref ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>
