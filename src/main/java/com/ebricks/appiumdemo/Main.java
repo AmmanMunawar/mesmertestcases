@@ -14,11 +14,9 @@ public class Main {
 
             appiumDemo.init();
             appiumDemo.testProcess();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(e);
-        }
-        finally {
+        } finally {
             appiumDemo.end();
         }
 

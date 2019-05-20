@@ -15,6 +15,7 @@ public class AppiumDemo {
     private static final Logger LOGGER = LogManager.getLogger(AppiumDemo.class.getName());
     private static AndroidDriver<MobileElement> driver;
 
+
     public static void init() {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "192.168.155.101.5555");
