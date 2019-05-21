@@ -68,7 +68,8 @@ public class ScriptExecutor {
             NodeList nodeList = xmlDocument.getElementsByTagName("*");
             this.uiElement=uiElement;
             UIElement uiElement1 = createUIElementfromNodelist(nodeList);
-            driver.findElement(By.xpath("//"+uiElement1.getType()+"[@text='" + uiElement1.getText() + "']")).click();
+            MobileElement mobileElement = driver.findElement(By.xpath("//"+uiElement1.getType()+"[@text='" + uiElement1.getText() + "']"));
+            mobileElement.click();
             Thread.sleep(2000);
         }
     }
