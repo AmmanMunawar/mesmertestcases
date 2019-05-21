@@ -1,4 +1,4 @@
-package com.ebricks.appiumdemo.scriptModel;
+package com.ebricks.script.model;
 
 public class UIElement {
     private String text;

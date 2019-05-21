@@ -1,4 +1,4 @@
-package com.ebricks.appiumdemo.scriptModel;
+package com.ebricks.script.model;
 
 import java.util.ArrayList;
 import java.util.List;

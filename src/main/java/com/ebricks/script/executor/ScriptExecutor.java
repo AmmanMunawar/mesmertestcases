@@ -1,7 +1,8 @@
-package com.ebricks.appiumdemo.TestServices;
+package com.ebricks.script.executor;
 
-import com.ebricks.appiumdemo.scriptModel.ScriptInputData;
-import com.ebricks.appiumdemo.scriptModel.UIElement;
+import com.ebricks.script.config.Configuration;
+import com.ebricks.script.model.ScriptInputData;
+import com.ebricks.script.model.UIElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -15,9 +16,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 //For XML Librairies
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -27,23 +25,24 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 
-public class AppiumDemo {
-    private static final Logger LOGGER = LogManager.getLogger(AppiumDemo.class.getName());
+public class ScriptExecutor {
+    private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
     private static AndroidDriver<MobileElement> driver;
     private ScriptInputData scriptInputData;
-    private ExecutorService scriptExecutor;
-    private List<Future<UIElement>> uiElementFutureList;
+    private UIElement uiElement;
+    private Configuration configuration = Configuration.getInstance();
 
-    public static void initialiazeConnectionWithAppium() {
+
+    public void initialiazeConnectionWithAppium() {
 
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("deviceName", "192.168.155.101.5555");
-        caps.setCapability("platformName", "Android");
-        caps.setCapability("platformVersion", "9");
-        caps.setCapability("automationName", "Appium");
+        caps.setCapability("deviceName",configuration.getDeviceName());
+        caps.setCapability("platformName", configuration.getPlatformName());
+        caps.setCapability("platformVersion", configuration.getPlatformVersion());
+        caps.setCapability("automationName", configuration.getAutomationName());
         caps.setCapability("app", System.getProperty("user.dir") + "/resources/spellingOverlapError.apk");
         try {
-            driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+            driver = new AndroidDriver<MobileElement>(new URL(configuration.getAppiumURL()), caps);
         } catch (MalformedURLException e) {
             LOGGER.error(e);
         }
@@ -52,48 +51,36 @@ public class AppiumDemo {
     public void init() {
 
         initialiazeConnectionWithAppium();
-        scriptExecutor = Executors.newFixedThreadPool(3);
-        this.uiElementFutureList = new ArrayList<Future<UIElement>>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/appelements.json")
                     , ScriptInputData.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
     }
 
-    public void testProcess() {
+    public void process() throws InterruptedException {
 
         for (final UIElement uiElement : this.scriptInputData.getUiElementList()) {
 
-            Future<UIElement> uiElementFuture = this.scriptExecutor.submit(new Callable<UIElement>() {
-                Document xmlDocument = convertXMLStringToDocument(driver.getPageSource());
-                NodeList nodeList = xmlDocument.getElementsByTagName("*");
-
-                public UIElement call() throws Exception {
-
-                    UIElement uiElement1 = createUIElementAndCompareTwoObjects(nodeList, uiElement);
-                    driver.findElement(By.xpath("//android.widget.Button[@text='" + uiElement1.getText() + "']")).click();
-                    Thread.sleep(2000);
-                    return uiElement1;
-                }
-            });
-            this.uiElementFutureList.add(uiElementFuture);
-        }
-        for (Future<UIElement> uiElementFuture : this.uiElementFutureList) {
-            try {
-                uiElementFuture.get();
-            } catch (InterruptedException e) {
-                LOGGER.error(e);
-            } catch (ExecutionException e) {
-                LOGGER.error(e);
-            }
-
+            Document xmlDocument = convertXMLStringToDocument(driver.getPageSource());
+            NodeList nodeList = xmlDocument.getElementsByTagName("*");
+            this.uiElement=uiElement;
+            UIElement uiElement1 = createUIElementfromNodelist(nodeList);
+            driver.findElement(By.xpath("//"+uiElement1.getType()+"[@text='" + uiElement1.getText() + "']")).click();
+            Thread.sleep(2000);
         }
     }
 
-    public UIElement createUIElementAndCompareTwoObjects(NodeList xmlNodeList, UIElement uiElement) {
+    public boolean compareUIElemetsobjects(UIElement uiElement){
+        if(this.uiElement.isEqual(uiElement)){
+            return true;
+        }
+        return false;
+    }
+
+    public UIElement createUIElementfromNodelist(NodeList xmlNodeList) {
 
         UIElement uiElementTemp = new UIElement();
         for (int i = 0; i < xmlNodeList.getLength(); i++) {
@@ -119,7 +106,7 @@ public class AppiumDemo {
                 uiElementTemp.setSelected(Boolean.valueOf(eElement.getAttribute("selected")));
                 uiElementTemp.setType(eElement.getAttribute("class"));
             }
-            if (uiElement.isEqual(uiElementTemp)) {
+            if (this.compareUIElemetsobjects(uiElementTemp)) {
                 return uiElementTemp;
             }
         }
@@ -141,17 +128,6 @@ public class AppiumDemo {
     }
 
     public void end() {
-        if (this.scriptExecutor != null) {
-
-            this.scriptExecutor.shutdown();
-            try {
-                if (!this.scriptExecutor.awaitTermination(10, TimeUnit.SECONDS)) {
-                    LOGGER.info("Task didn't complete in given time");
-                }
-            } catch (InterruptedException e) {
-                LOGGER.error(e);
-            }
-        }
         driver.quit();
     }
 }
