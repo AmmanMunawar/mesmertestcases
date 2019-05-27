@@ -4,6 +4,7 @@ import com.ebricks.script.executor.ScriptExecutor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -13,7 +14,25 @@ public class Configuration {
     private String platformName;
     private String platformVersion;
     private String automationName;
-    private String appiumURL;
+    private String appiumIP;
+    private int appiumPort;
+
+    public String getAppiumIP() {
+        return appiumIP;
+    }
+
+    public void setAppiumIP(String appiumIP) {
+        this.appiumIP = appiumIP;
+    }
+
+    public int getAppiumPort() {
+        return appiumPort;
+    }
+
+    public void setAppiumPort(int appiumPort) {
+        this.appiumPort = appiumPort;
+    }
+
     private static Configuration instance;
 
     public static Configuration getInstance() {
@@ -29,6 +48,7 @@ public class Configuration {
         }
         return instance;
     }
+
     public String getDeviceName() {
         return deviceName;
     }
@@ -61,11 +81,5 @@ public class Configuration {
         this.automationName = automationName;
     }
 
-    public String getAppiumURL() {
-        return appiumURL;
-    }
 
-    public void setAppiumURL(String appriumURL) {
-        this.appiumURL = appriumURL;
-    }
 }

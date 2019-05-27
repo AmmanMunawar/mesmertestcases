@@ -1,95 +1,92 @@
 package com.ebricks.script.executor;
 
-import com.ebricks.script.config.Configuration;
+import com.ebricks.script.Path;
 import com.ebricks.script.model.ScriptInputData;
+import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
+import com.ebricks.script.service.AppiumService;
+import com.ebricks.script.stepexecutor.StepFactory;
+import com.ebricks.script.stepexecutor.response.StepResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-//For XML Librairies
-import java.io.StringReader;
+
+import java.io.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-
 public class ScriptExecutor {
     private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
-    private static AndroidDriver<MobileElement> driver;
     private ScriptInputData scriptInputData;
-    private UIElement uiElement;
-    private Configuration configuration = Configuration.getInstance();
-
-
-    public void initialiazeConnectionWithAppium() {
-
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("deviceName",configuration.getDeviceName());
-        caps.setCapability("platformName", configuration.getPlatformName());
-        caps.setCapability("platformVersion", configuration.getPlatformVersion());
-        caps.setCapability("automationName", configuration.getAutomationName());
-        caps.setCapability("app", System.getProperty("user.dir") + "/resources/spellingOverlapError.apk");
-        try {
-            driver = new AndroidDriver<MobileElement>(new URL(configuration.getAppiumURL()), caps);
-        } catch (MalformedURLException e) {
-            LOGGER.error(e);
-        }
-    }
 
     public void init() {
 
-        initialiazeConnectionWithAppium();
+        AppiumService.getInstance().createSession();
+        Path.getinstance().makeDirectory();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/appelements.json")
+            scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/elements.json")
                     , ScriptInputData.class);
         } catch (IOException e) {
-            LOGGER.error(e);
+            LOGGER.error("IOException", e);
         }
     }
 
     public void process() throws InterruptedException {
 
-        for (final UIElement uiElement : this.scriptInputData.getUiElementList()) {
+        JSONArray stepResponces = new JSONArray();
+        for (Step step : this.scriptInputData.getSteps()) {
 
-            Document xmlDocument = convertXMLStringToDocument(driver.getPageSource());
-            NodeList nodeList = xmlDocument.getElementsByTagName("*");
-            this.uiElement=uiElement;
-            UIElement uiElement1 = createUIElementfromNodelist(nodeList);
-            MobileElement mobileElement = driver.findElement(By.xpath("//"+uiElement1.getType()+"[@text='" + uiElement1.getText() + "']"));
-            mobileElement.click();
-            Thread.sleep(2000);
+            UIElement uiElement1 = findUIElement(
+                    AppiumService.getInstance().getPageSourse(), step.getElement()
+            );
+            StepResponse stepResponse = StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
+            JSONObject jsonObject = new JSONObject(stepResponse.response());
+            stepResponces.put(jsonObject);
+            Thread.sleep(3000);
         }
+        saveResponseinFile(stepResponces);
     }
 
-    public boolean compareUIElemetsobjects(UIElement uiElement){
-        if(this.uiElement.isEqual(uiElement)){
-            return true;
+    private void saveResponseinFile(JSONArray stepResponces) {
+
+        try {
+            JSONObject stepResponcesObjects = new JSONObject();
+            stepResponcesObjects.put("stepResponces", stepResponces);
+            FileWriter writeFile = new FileWriter(Path.getinstance().getDirectoryPath() + "/stepResponse.json");
+            writeFile.write(stepResponcesObjects.toString());
+            writeFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return false;
+
     }
 
-    public UIElement createUIElementfromNodelist(NodeList xmlNodeList) {
+    public boolean compareUIElemetsobjects(UIElement uiElement, UIElement uiElement1) {
+        return uiElement.isEqual(uiElement1);
+    }
 
+    public UIElement findUIElement(String xmlString, UIElement uiElement) {
+
+        if (uiElement == null) {
+            return null;
+        }
+        Document xmlDocument = convertXMLStringToDocument(xmlString);
+        NodeList xmlNodeList = xmlDocument.getElementsByTagName("*");
         UIElement uiElementTemp = new UIElement();
         for (int i = 0; i < xmlNodeList.getLength(); i++) {
 
             Node node = xmlNodeList.item(i);
             Element eElement = (Element) node;
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-
                 uiElementTemp.setText(eElement.getAttribute("text"));
                 uiElementTemp.setBounds(eElement.getAttribute("bounds"));
                 uiElementTemp.setCheckable(Boolean.valueOf(eElement.getAttribute("checkable")));
@@ -107,7 +104,7 @@ public class ScriptExecutor {
                 uiElementTemp.setSelected(Boolean.valueOf(eElement.getAttribute("selected")));
                 uiElementTemp.setType(eElement.getAttribute("class"));
             }
-            if (this.compareUIElemetsobjects(uiElementTemp)) {
+            if (this.compareUIElemetsobjects(uiElementTemp, uiElement)) {
                 return uiElementTemp;
             }
         }
@@ -123,12 +120,12 @@ public class ScriptExecutor {
             Document xmlDocument = builder.parse(new InputSource(new StringReader(xmlStr)));
             return xmlDocument;
         } catch (Exception e) {
-            LOGGER.error(e);
+            LOGGER.error("Exception", e);
         }
         return null;
     }
 
     public void end() {
-        driver.quit();
+        AppiumService.getInstance().quit();
     }
 }

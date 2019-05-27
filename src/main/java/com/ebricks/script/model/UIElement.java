@@ -1,5 +1,8 @@
 package com.ebricks.script.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UIElement {
     private String text;
     private String type;
@@ -149,6 +152,7 @@ public class UIElement {
     public boolean isEqual(UIElement uiElement) {
 
         if (
+                this.resourceId.equals(uiElement.resourceId)||
                 this.text.equals(uiElement.text) &&
                 this.type.equals(uiElement.type) &&
                 this.pkg.equals(uiElement.pkg) &&
@@ -162,9 +166,8 @@ public class UIElement {
                 this.scrollable == uiElement.scrollable &&
                 this.longClickable == uiElement.longClickable &&
                 this.password == uiElement.password &&
-                this.selected == uiElement.selected &&
-                this.bounds.equals(uiElement.bounds) &&
-                this.resourceId.equals(uiElement.resourceId)
+                this.selected == uiElement.selected
+
         ) {
             return true;
         }

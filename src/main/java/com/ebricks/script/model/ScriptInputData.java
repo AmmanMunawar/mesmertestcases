@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptInputData {
-    private List<UIElement> uiElementList = new ArrayList<UIElement>();
+    private List<Step> steps = new ArrayList<Step>();
 
-    public List<UIElement> getUiElementList() {
-        return uiElementList;
+
+    public List<Step> getSteps() {
+        return steps;
     }
 
-    public void setUiElementList(List<UIElement> uiElementList) {
-        this.uiElementList = uiElementList;
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
     }
 }

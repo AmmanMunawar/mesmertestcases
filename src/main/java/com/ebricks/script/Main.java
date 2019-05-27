@@ -15,7 +15,7 @@ public class Main {
             ScriptExecutor.init();
             ScriptExecutor.process();
         } catch (Exception e) {
-            LOGGER.error(e);
+            LOGGER.error("Exception", e);
         } finally {
             ScriptExecutor.end();
         }

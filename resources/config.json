@@ -2,6 +2,7 @@
 	"deviceName": "192.168.155.101.5555",
 	"platformName": "Android",
 	"platformVersion": "9",
-	"automationName": "Appium",
-	"appiumURL": "http://127.0.0.1:4723/wd/hub"
+	"automationName": "UiAutomator2",
+	"appiumIP":"127.0.0.1",
+	"appiumPort":4723
 }
