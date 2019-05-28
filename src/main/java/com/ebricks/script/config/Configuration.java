@@ -81,5 +81,4 @@ public class Configuration {
         this.automationName = automationName;
     }
 
-
 }

@@ -1,9 +1,8 @@
 package com.ebricks.script.stepexecutor;
 
 import com.ebricks.script.model.Step;
-import com.ebricks.script.model.UIElement;
 import com.ebricks.script.service.AppiumService;
-import com.ebricks.script.stepexecutor.response.StepResponse;
+import com.ebricks.script.stepexecutor.response.StepExecutorResponse;
 
 public class LockExecutor extends StepExecutor {
     public LockExecutor(Step step) {
@@ -15,11 +14,10 @@ public class LockExecutor extends StepExecutor {
     }
 
 
-    public StepResponse execute(UIElement uiElement) {
-        init();
+    public StepExecutorResponse execute() {
         AppiumService.getInstance().lockDevice();
-        this.stepResponse.setUiElement(uiElement);
-        this.stepResponse.getStepStatus().setStatus(true);
-        return this.stepResponse;
+        this.stepExecutorResponse.setUiElement(this.step.getElement());
+        this.stepExecutorResponse.getStepStatus().setStatus(true);
+        return this.stepExecutorResponse;
     }
 }

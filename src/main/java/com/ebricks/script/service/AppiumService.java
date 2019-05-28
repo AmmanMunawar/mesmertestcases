@@ -57,7 +57,7 @@ public class AppiumService {
         builder.usingPort(configuration.getAppiumPort());
         builder.withCapabilities(cap);
         builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
-        builder.withArgument(GeneralServerFlag.LOG_LEVEL,"error");
+        builder.withArgument(GeneralServerFlag.LOG_LEVEL, "error");
         service = AppiumDriverLocalService.buildService(builder);
         service.start();
     }
@@ -77,7 +77,7 @@ public class AppiumService {
         caps.setCapability("automationName", configuration.getAutomationName());
         caps.setCapability("app", System.getProperty("user.dir") + "/resources/com.coupons.ciapp-4.3.apk");
         try {
-            driver = new AndroidDriver<MobileElement>(new URL("http://"+configuration.getAppiumIP()+":"+configuration.getAppiumPort()+"/wd/hub"), caps);
+            driver = new AndroidDriver<MobileElement>(new URL("http://" + configuration.getAppiumIP() + ":" + configuration.getAppiumPort() + "/wd/hub"), caps);
         } catch (MalformedURLException e) {
             LOGGER.error(e);
         }
@@ -114,45 +114,36 @@ public class AppiumService {
         swipe.press(point(startX, startY)).waitAction(waitOptions(ofSeconds(3))).moveTo(point(endX, endY)).release().perform();
     }
 
-    public void click(UIElement uiElement){
+    public void click(UIElement uiElement) {
         MobileElement mobileElement = driver.findElement(By.xpath("//" + uiElement.getType() + "[@text='" + uiElement.getText() + "']"));
         mobileElement.click();
     }
 
-    public void setValue(UIElement uiElement,String text){
+    public void setValue(UIElement uiElement, String text) {
 
-            MobileElement mobileElement = driver.findElement(By.id(uiElement.getResourceId()));
-            mobileElement.click();
-            mobileElement.sendKeys(text);
+        MobileElement mobileElement = driver.findElement(By.id(uiElement.getResourceId()));
+        mobileElement.click();
+        mobileElement.sendKeys(text);
     }
 
     private void stopServer() {
         service.stop();
     }
 
-    public void quit(){
+    public void quit() {
         driver.quit();
         stopServer();
     }
 
-    public void getScreenShotAs(int id){
+    public String getScreenShotAs(int id) {
 
-        File srcFile=driver.getScreenshotAs(OutputType.FILE);
-        File targetFile=new File( Path.getinstance().getDirectoryPath()+"/"+ id +".jpg");
+        File srcFile = driver.getScreenshotAs(OutputType.FILE);
+        File targetFile = new File(Path.getinstance().getDirectoryPath() + "/" + id + ".jpg");
         try {
-            FileUtils.copyFile(srcFile,targetFile);
+            FileUtils.copyFile(srcFile, targetFile);
         } catch (IOException e) {
-            LOGGER.error("Exception",e);
+            LOGGER.error("Exception", e);
         }
-    }
-
-    public void savePageResourceinFile(int id){
-        try {
-            FileWriter fileWriter = new FileWriter(Path.getinstance().getDirectoryPath()+"/"+id+".xml");
-            fileWriter.write(driver.getPageSource());
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return id + ".jpg";
     }
 }

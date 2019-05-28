@@ -1,17 +1,22 @@
 package com.ebricks.script.executor;
 
+import com.ebricks.script.FileUtils;
 import com.ebricks.script.Path;
 import com.ebricks.script.model.ScriptInputData;
 import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
 import com.ebricks.script.service.AppiumService;
+
+import com.ebricks.script.stepexecutor.StepExecutor;
 import com.ebricks.script.stepexecutor.StepFactory;
-import com.ebricks.script.stepexecutor.response.StepResponse;
+import com.ebricks.script.stepexecutor.response.StepExecutorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.appium.java_client.MobileElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -26,12 +31,15 @@ import org.xml.sax.InputSource;
 public class ScriptExecutor {
     private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
     private ScriptInputData scriptInputData;
+    private StepExecutorResponces stepExecutorResponces;
+    private ObjectMapper objectMapper;
 
     public void init() {
 
         AppiumService.getInstance().createSession();
         Path.getinstance().makeDirectory();
-        ObjectMapper objectMapper = new ObjectMapper();
+        stepExecutorResponces = new StepExecutorResponces();
+        this.objectMapper = new ObjectMapper();
         try {
             scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/elements.json")
                     , ScriptInputData.class);
@@ -42,30 +50,23 @@ public class ScriptExecutor {
 
     public void process() throws InterruptedException {
 
-        JSONArray stepResponces = new JSONArray();
         for (Step step : this.scriptInputData.getSteps()) {
+            StepExecutor stepExecutor = StepFactory.getInstance().getStepExecutor(step);
+//
+//                        UIElement uiElement1 = findUIElement(
+//                    AppiumService.getInstance().getPageSourse(), step.getElement()
+//            );
 
-            UIElement uiElement1 = findUIElement(
-                    AppiumService.getInstance().getPageSourse(), step.getElement()
-            );
-            StepResponse stepResponse = StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
-            JSONObject jsonObject = new JSONObject(stepResponse.response());
-            stepResponces.put(jsonObject);
-            Thread.sleep(3000);
-        }
-        saveResponseinFile(stepResponces);
-    }
-
-    private void saveResponseinFile(JSONArray stepResponces) {
-
-        try {
-            JSONObject stepResponcesObjects = new JSONObject();
-            stepResponcesObjects.put("stepResponces", stepResponces);
-            FileWriter writeFile = new FileWriter(Path.getinstance().getDirectoryPath() + "/stepResponse.json");
-            writeFile.write(stepResponcesObjects.toString());
-            writeFile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            stepExecutor.init();
+            StepExecutorResponse stepExecutorResponse = stepExecutor.execute();
+            try {
+                JSONObject jsonObject = new JSONObject(stepExecutorResponse.toString());
+                StepExecutorReturnResponse stepExutorReturnRes = this.objectMapper.readValue(jsonObject.toString()
+                        , StepExecutorReturnResponse.class);
+                this.stepExecutorResponces.addObject(stepExutorReturnRes);
+            } catch (IOException e) {
+                LOGGER.error("StepExecutorResponse", e);
+            }
         }
 
     }
@@ -126,6 +127,7 @@ public class ScriptExecutor {
     }
 
     public void end() {
+        FileUtils.getInstance().saveStepExecutorReponse(this.stepExecutorResponces);
         AppiumService.getInstance().quit();
     }
 }

@@ -5,19 +5,18 @@ import com.ebricks.script.model.UIElement;
 
 import com.ebricks.script.model.event.SwipeEvent;
 import com.ebricks.script.service.AppiumService;
-import com.ebricks.script.stepexecutor.response.StepResponse;
+import com.ebricks.script.stepexecutor.response.StepExecutorResponse;
 
 public class SwipeExecutor extends StepExecutor {
     public SwipeExecutor(Step step) {
         super(step);
     }
 
-    public StepResponse execute(UIElement uiElement) {
-        init();
+    public StepExecutorResponse execute() {
         SwipeEvent swipe = (SwipeEvent) step.getEvent();
         AppiumService.getInstance().swipe(swipe.getStartPointX(), swipe.getStartPointY(), swipe.getEndPointX(), swipe.getEndPointY());
-        this.stepResponse.setUiElement(uiElement);
-        this.stepResponse.getStepStatus().setStatus(true);
-        return this.stepResponse;
+        this.stepExecutorResponse.setUiElement(this.step.getElement());
+        this.stepExecutorResponse.getStepStatus().setStatus(true);
+        return this.stepExecutorResponse;
     }
 }
