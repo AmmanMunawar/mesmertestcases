@@ -3,98 +3,38 @@
 
 		{
 			"id": 1,
-			"element": {
-				"text": "NEXT",
-				"type": "android.widget.TextView",
-				"pkg": "com.coupons.ciapp",
-				"contentDesc": "",
-				"checkable": false,
-				"checked": false,
-				"clickable": true,
-				"enabled": true,
-				"focusable": true,
-				"focused": false,
-				"scrollable": false,
-				"longClickable": false,
-				"password": false,
-				"selected": false,
-				"bounds": "[0,2147][1440,2392]",
-				"resourceId": "com.coupons.ciapp:id/next_button"
-			},
+			"element": null,
 			"event": {
-				"type": "tap"
+				"type": "tap",
+				"x": 641,
+				"y": 2267
 			}
 		},
 		{
 			"id": 2,
-			"element": {
-				"text": "NEXT",
-				"type": "android.widget.TextView",
-				"pkg": "com.coupons.ciapp",
-				"contentDesc": "",
-				"checkable": false,
-				"checked": false,
-				"clickable": true,
-				"enabled": true,
-				"focusable": true,
-				"focused": false,
-				"scrollable": false,
-				"longClickable": false,
-				"password": false,
-				"selected": false,
-				"bounds": "[0,2147][1440,2392]",
-				"resourceId": "com.coupons.ciapp:id/next_button"
-			},
+			"element": null,
 			"event": {
-				"type": "tap"
+				"type": "tap",
+				"x": 641,
+				"y": 2267
 			}
 		},
 		{
 			"id": 3,
-			"element": {
-				"text": "NEXT",
-				"type": "android.widget.TextView",
-				"pkg": "com.coupons.ciapp",
-				"contentDesc": "",
-				"checkable": false,
-				"checked": false,
-				"clickable": true,
-				"enabled": true,
-				"focusable": true,
-				"focused": false,
-				"scrollable": false,
-				"longClickable": false,
-				"password": false,
-				"selected": false,
-				"bounds": "[0,2147][1440,2392]",
-				"resourceId": "com.coupons.ciapp:id/next_button"
-			},
+			"element": null,
 			"event": {
-				"type": "tap"
+				"type": "tap",
+				"x": 192,
+				"y": 2267
 			}
 		},
 		{
 			"id": 4,
-			"element": {
-				"text": "Later",
-				"type": "android.widget.TextView",
-				"pkg": "com.coupons.ciapp",
-				"contentDesc": "",
-				"checkable": false,
-				"checked": false,
-				"clickable": true,
-				"enabled": true,
-				"focusable": true,
-				"focused": false,
-				"scrollable": false,
-				"longClickable": false,
-				"password": false,
-				"selected": false,
-				"bounds": "[0,2147][576,2392]",
-				"resourceId": "com.coupons.ciapp:id/next_button"
-			},
+			"element": null,
 			"event": {
-				"type": "tap"
+				"type": "tap",
+				"x": 192,
+				"y": 2267
 			}
 		}
 	]

@@ -19,7 +19,6 @@ public class TapExecutor extends StepExecutor {
 
     public StepExecutorResponse execute() {
         try {
-
             AppiumService.getInstance().click(this.step.getElement());
             this.stepExecutorResponse.setUiElement(this.step.getElement());
             this.stepExecutorResponse.getStepStatus().setStatus(true);

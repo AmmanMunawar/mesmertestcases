@@ -52,12 +52,11 @@ public class FindXYElements {
     public boolean compareBoundValues(int x, int y, String bounds) {
         bounds = bounds.replaceAll("\\D", ",");
         String[] splitted = bounds.split(",");
-
         int boundX = Integer.parseInt(splitted[1]);
         int boundY = Integer.parseInt(splitted[2]);
         int boundWidth = Integer.parseInt(splitted[4]);
         int boundHeight = Integer.parseInt(splitted[5]);
-        if (x > boundX && y > boundY && x < boundX + boundWidth && y < boundY + boundHeight) {
+        if (x >= boundX && y >= boundY && x <= boundWidth && y <= boundHeight) {
             return true;
         }
         return false;
@@ -67,16 +66,16 @@ public class FindXYElements {
 
         Element foundelement = this.elements.get(0);
         String bounds[] = foundelement.getAttribute("bounds").replaceAll("\\D", ",").split(",");
-        int smallestWidht = Integer.parseInt(bounds[4]);
-        int smallestHeight = Integer.parseInt(bounds[5]);
+        int smallWidth = Integer.parseInt(bounds[4]);
+        int smallheight = Integer.parseInt(bounds[5]);
         for (Element element : this.elements) {
 
             int boundWidth = Integer.parseInt(element.getAttribute("bounds").replaceAll("\\D", ",").split(",")[4]);
             int boundHeight = Integer.parseInt(element.getAttribute("bounds").replaceAll("\\D", ",").split(",")[5]);
 
-            if (boundWidth <= smallestWidht && boundHeight <= smallestHeight) {
-                smallestWidht = boundWidth;
-                smallestHeight = boundHeight;
+            if (boundWidth <= smallWidth && boundHeight <= smallheight) {
+                smallWidth = boundWidth;
+                smallheight = boundHeight;
                 foundelement = element;
             }
         }
@@ -111,8 +110,10 @@ public class FindXYElements {
             Node node = xmlNodeList.item(i);
             Element eElement = (Element) node;
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                if (this.compareBoundValues(x, y, eElement.getAttribute("bounds"))) {
-                    this.elements.add(eElement);
+                if(eElement.getAttribute("bounds")!="") {
+                    if (this.compareBoundValues(x, y, eElement.getAttribute("bounds"))) {
+                        this.elements.add(eElement);
+                    }
                 }
             }
 

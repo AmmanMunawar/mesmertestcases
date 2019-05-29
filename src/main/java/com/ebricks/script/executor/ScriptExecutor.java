@@ -11,12 +11,10 @@ import com.ebricks.script.stepexecutor.StepExecutor;
 import com.ebricks.script.stepexecutor.StepFactory;
 import com.ebricks.script.stepexecutor.response.StepExecutorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.appium.java_client.MobileElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -52,13 +50,9 @@ public class ScriptExecutor {
 
         for (Step step : this.scriptInputData.getSteps()) {
             StepExecutor stepExecutor = StepFactory.getInstance().getStepExecutor(step);
-//
-//                        UIElement uiElement1 = findUIElement(
-//                    AppiumService.getInstance().getPageSourse(), step.getElement()
-//            );
-
             stepExecutor.init();
             StepExecutorResponse stepExecutorResponse = stepExecutor.execute();
+            Thread.sleep(1000);
             try {
                 JSONObject jsonObject = new JSONObject(stepExecutorResponse.toString());
                 StepExecutorReturnResponse stepExutorReturnRes = this.objectMapper.readValue(jsonObject.toString()

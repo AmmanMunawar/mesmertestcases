@@ -28,11 +28,14 @@ public abstract class StepExecutor {
     }
 
     public void init() {
+
         try {
-            if (step.getEvent().getType() == "tap") {
+            if (step.getEvent().getType().equals("tap")) {
+
                 UIElement uiElement = FindXYElements.getInstance().findTapElement(this.step.getEvent());
                 this.step.setElement(uiElement);
-            } else if (step.getEvent().getType() == "input") {
+
+            } else if (step.getEvent().getType().equals("input")) {
                 UIElement uiElement = FindXYElements.getInstance().findInputElement(this.step.getEvent());
                 this.step.setElement(uiElement);
             }
