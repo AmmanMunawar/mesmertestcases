@@ -2,7 +2,6 @@ package com.ebricks.script.service;
 
 import com.ebricks.script.Path;
 import com.ebricks.script.config.Configuration;
-import com.ebricks.script.executor.ScriptExecutor;
 import com.ebricks.script.model.UIElement;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -18,24 +17,17 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.springframework.beans.factory.parsing.PassThroughSourceExtractor;
-
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.time.Duration.ofSeconds;
 
 public class AppiumService {
-    private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
+
+    private static final Logger LOGGER = LogManager.getLogger(AppiumService.class.getName());
     private DesiredCapabilities caps = new DesiredCapabilities();
     private Configuration configuration = Configuration.getInstance();
     private AndroidDriver<MobileElement> driver;
@@ -45,8 +37,7 @@ public class AppiumService {
     private DesiredCapabilities cap;
 
 
-    private AppiumService() {
-    }
+    private AppiumService() {}
 
     private void startServer() {
 
@@ -111,11 +102,12 @@ public class AppiumService {
     public void swipe(int startX, int startY, int endX, int endY) {
 
         TouchAction swipe = new TouchAction(driver);
-        swipe.press(point(startX, startY)).waitAction(waitOptions(ofSeconds(3))).moveTo(point(endX, endY)).release().perform();
+        swipe.press(point(startX, startY)).waitAction(waitOptions(ofSeconds(3))).
+                moveTo(point(endX, endY)).release().perform();
     }
 
     public void click(UIElement uiElement) {
-        MobileElement mobileElement = driver.findElement(By.xpath("//" + uiElement.getType() + "[@text='" + uiElement.getText() + "']"));
+        MobileElement mobileElement = driver.findElement(By.id(uiElement.getResourceId()));
         mobileElement.click();
     }
 
@@ -131,6 +123,7 @@ public class AppiumService {
     }
 
     public void quit() {
+
         driver.quit();
         stopServer();
     }
@@ -138,10 +131,12 @@ public class AppiumService {
     public String getScreenShotAs(int id) {
 
         File srcFile = driver.getScreenshotAs(OutputType.FILE);
-        File targetFile = new File(Path.getinstance().getDirectoryPath() + "/" + id + ".jpg");
+        File targetFile = new File(Path.getinstance().getScreenShotPath() + "/" + id + ".jpg");
         try {
+
             FileUtils.copyFile(srcFile, targetFile);
         } catch (IOException e) {
+
             LOGGER.error("Exception", e);
         }
         return id + ".jpg";

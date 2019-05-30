@@ -1,10 +1,6 @@
 package com.ebricks.script.executor;
 
 import com.ebricks.script.model.UIElement;
-import com.ebricks.script.model.event.Event;
-import com.ebricks.script.model.event.InputEvent;
-import com.ebricks.script.model.event.TapEvent;
-import com.ebricks.script.service.AppiumService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -21,7 +17,7 @@ import java.util.List;
 
 public class FindXYElements {
 
-    private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(FindXYElements.class.getName());
     private List<Element> elements = new ArrayList<>();
     private static FindXYElements instance;
 
@@ -33,6 +29,24 @@ public class FindXYElements {
             instance = new FindXYElements();
         }
         return instance;
+    }
+
+    public UIElement findUIelement(int x, int y, String xmlString) {
+        Document xmlDocument = convertXMLStringToDocument(xmlString);
+        NodeList xmlNodeList = xmlDocument.getElementsByTagName("*");
+        for (int i = 0; i < xmlNodeList.getLength(); i++) {
+            Node node = xmlNodeList.item(i);
+            Element eElement = (Element) node;
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                if(eElement.getAttribute("bounds")!="") {
+                    if (this.compareBoundValues(x, y, eElement.getAttribute("bounds"))) {
+                        this.elements.add(eElement);
+                    }
+                }
+            }
+
+        }
+        return uiElementwithShortestDistance();
     }
 
     public static Document convertXMLStringToDocument(String xmlStr) {
@@ -79,6 +93,9 @@ public class FindXYElements {
                 foundelement = element;
             }
         }
+        for (int i=0;i<this.elements.size();i++){
+            this.elements.remove(i);
+        }
         return createUIElementObject(foundelement);
     }
 
@@ -103,33 +120,6 @@ public class FindXYElements {
         return uiElementTemp;
     }
 
-    public UIElement findUIelement(int x, int y, String xmlString) {
-        Document xmlDocument = convertXMLStringToDocument(xmlString);
-        NodeList xmlNodeList = xmlDocument.getElementsByTagName("*");
-        for (int i = 0; i < xmlNodeList.getLength(); i++) {
-            Node node = xmlNodeList.item(i);
-            Element eElement = (Element) node;
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                if(eElement.getAttribute("bounds")!="") {
-                    if (this.compareBoundValues(x, y, eElement.getAttribute("bounds"))) {
-                        this.elements.add(eElement);
-                    }
-                }
-            }
 
-        }
-        return uiElementwithShortestDistance();
-    }
 
-    public UIElement findInputElement(Event event) {
-        InputEvent input = (InputEvent) event;
-        UIElement uiElement = findUIelement(input.getX(), input.getY(), AppiumService.getInstance().getPageSourse());
-        return uiElement;
-    }
-
-    public UIElement findTapElement(Event event) {
-        TapEvent tapEvent = (TapEvent) event;
-        UIElement uiElement = findUIelement(tapEvent.getX(), tapEvent.getY(), AppiumService.getInstance().getPageSourse());
-        return uiElement;
-    }
 }

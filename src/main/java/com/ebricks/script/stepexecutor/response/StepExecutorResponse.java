@@ -9,6 +9,7 @@ public class StepExecutorResponse {
     private UIElement uiElement;
 
     public StepExecutorResponse(){
+
         this.screen = new Screen();
         this.stepStatus = new StepStatus();
     }
@@ -26,13 +27,8 @@ public class StepExecutorResponse {
     }
 
     public void setUiElement(UIElement uiElement) {
-        this.uiElement = uiElement;
+            this.uiElement = uiElement;
     }
 
-    public String toString(){
-        return "{ "+
-                "action:"+this.uiElement.getClass().getSimpleName()+","+
-                "screenshotname:"+this.screen.getScreenshotName()+","+
-                "status:"+this.stepStatus.getStatus()+"}";
-    }
+
 }

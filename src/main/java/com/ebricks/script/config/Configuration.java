@@ -1,6 +1,5 @@
 package com.ebricks.script.config;
 
-import com.ebricks.script.executor.ScriptExecutor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,7 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Configuration {
-    private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
+
+    private static final Logger LOGGER = LogManager.getLogger(Configuration.class.getName());
     private String deviceName;
     private String platformName;
     private String platformVersion;
@@ -36,12 +36,17 @@ public class Configuration {
     private static Configuration instance;
 
     public static Configuration getInstance() {
+
         if (instance == null) {
+
             ObjectMapper objectMapper = new ObjectMapper();
             try {
-                instance = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/config.json")
+
+                instance = objectMapper.readValue(new FileReader(
+                        System.getProperty("user.dir") + "/resources/config.json")
                         , Configuration.class);
             } catch (IOException e) {
+
                 LOGGER.error(e);
             }
             return instance;
@@ -80,5 +85,6 @@ public class Configuration {
     public void setAutomationName(String automationName) {
         this.automationName = automationName;
     }
+
 
 }

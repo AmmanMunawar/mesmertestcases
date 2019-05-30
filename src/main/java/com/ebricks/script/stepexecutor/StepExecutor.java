@@ -1,17 +1,21 @@
 package com.ebricks.script.stepexecutor;
 
-import com.ebricks.script.FileUtils;
+import com.ebricks.script.Path;
+import com.ebricks.script.ScriptReadWriteFromFile;
 import com.ebricks.script.executor.FindXYElements;
 import com.ebricks.script.executor.ScriptExecutor;
 import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
+import com.ebricks.script.model.event.InputEvent;
+import com.ebricks.script.model.event.TapEvent;
 import com.ebricks.script.service.AppiumService;
 import com.ebricks.script.stepexecutor.response.StepExecutorResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public abstract class StepExecutor {
-    private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
+
+    private static final Logger LOGGER = LogManager.getLogger(StepExecutor.class.getName());
     protected Step step;
     protected StepExecutorResponse stepExecutorResponse;
 
@@ -29,26 +33,57 @@ public abstract class StepExecutor {
 
     public void init() {
 
+        ScriptExecutor scriptExecutor = new ScriptExecutor();
         try {
+
+            LOGGER.info(this.step.getEvent().getType());
             if (step.getEvent().getType().equals("tap")) {
 
-                UIElement uiElement = FindXYElements.getInstance().findTapElement(this.step.getEvent());
-                this.step.setElement(uiElement);
+                TapEvent tapEvent = (TapEvent) this.step.getEvent();
+                UIElement recordedUIElement = FindXYElements.getInstance().
+                        findUIelement(
+                                tapEvent.getX(), tapEvent.getY(), AppiumService.getInstance().getPageSourse());
 
+                UIElement detectUIElement = scriptExecutor.findUIElement(
+
+                        ScriptReadWriteFromFile.getInstance().readXMLFile(Path.getinstance().getTestCasePath() + "testcases01/dom/" + this.step.getScreen().getDom()),
+                        recordedUIElement);
+                try {
+//                    LOGGER.info(uiElement.getText());
+                    this.step.setElement(detectUIElement);
+                } catch (Exception e) {
+
+                    LOGGER.error("UIElement Exception", e);
+                }
             } else if (step.getEvent().getType().equals("input")) {
-                UIElement uiElement = FindXYElements.getInstance().findInputElement(this.step.getEvent());
-                this.step.setElement(uiElement);
+
+                InputEvent inputEvent = (InputEvent) this.step.getEvent();
+                UIElement recordedUIElement = FindXYElements.getInstance().
+                        findUIelement(
+                                inputEvent.getX(), inputEvent.getY(), AppiumService.getInstance().getPageSourse());
+                UIElement detectUIElement = scriptExecutor.findUIElement(
+                        ScriptReadWriteFromFile.getInstance().readXMLFile(Path.getinstance().getTestCasePath() + "testcases01/dom/" + this.step.getScreen().getDom()),
+                        recordedUIElement);
+                try {
+//                    LOGGER.info(uiElement.getText());
+                    this.step.setElement(detectUIElement);
+                } catch (Exception e) {
+
+                    LOGGER.error("UIElement Exception", e);
+                }
             }
 
             String screenShotName = AppiumService.getInstance().getScreenShotAs(this.step.getId());
-            String domName = FileUtils.getInstance().savePageResource(this.step.getId());
+            String domName = ScriptReadWriteFromFile.getInstance().savePageResource(this.step.getId());
             stepExecutorResponse = new StepExecutorResponse();
             stepExecutorResponse.getScreen().setScreenshotName(screenShotName);
             stepExecutorResponse.getScreen().setDom(domName);
         } catch (Exception e) {
+
             LOGGER.error("StepExecutorException", e);
         }
     }
+
 
     public abstract StepExecutorResponse execute();
 }

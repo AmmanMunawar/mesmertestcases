@@ -1,11 +1,11 @@
 package com.ebricks.script.model.event;
 
-import com.ebricks.script.executor.ScriptExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class InputEvent extends Event {
-    private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
+
+    private static final Logger LOGGER = LogManager.getLogger(InputEvent.class.getName());
     private String text;
     private int x;
     private int y;

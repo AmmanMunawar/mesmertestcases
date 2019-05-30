@@ -8,6 +8,10 @@
 				"type": "tap",
 				"x": 641,
 				"y": 2267
+			},
+			"screen": {
+				"screenshotName": "1.jpg",
+				"dom": "1.xml"
 			}
 		},
 		{
@@ -17,6 +21,10 @@
 				"type": "tap",
 				"x": 641,
 				"y": 2267
+			},
+			"screen": {
+				"screenshotName": "2.jpg",
+				"dom": "2.xml"
 			}
 		},
 		{
@@ -24,8 +32,12 @@
 			"element": null,
 			"event": {
 				"type": "tap",
-				"x": 192,
+				"x": 641,
 				"y": 2267
+			},
+			"screen": {
+				"screenshotName": "3.jpg",
+				"dom": "3.xml"
 			}
 		},
 		{
@@ -35,6 +47,122 @@
 				"type": "tap",
 				"x": 192,
 				"y": 2267
+			},
+			"screen": {
+				"screenshotName": "4.jpg",
+				"dom": "4.xml"
+			}
+		},
+		{
+			"id": 5,
+			"element": null,
+			"event": {
+				"type": "tap",
+				"x": 1241,
+				"y": 2298
+			},
+			"screen": {
+				"screenshotName": "5.jpg",
+				"dom": "5.xml"
+			}
+		},
+		{
+			"id": 6,
+			"element": null,
+			"event": {
+				"type": "tap",
+				"x": 599,
+				"y": 472
+			},
+			"screen": {
+				"screenshotName": "6.jpg",
+				"dom": "6.xml"
+			}
+		},
+		{
+			"id": 7,
+			"element": null,
+			"event": {
+				"type": "tap",
+				"x": 388,
+				"y": 1241
+			},
+			"screen": {
+				"screenshotName": "7.jpg",
+				"dom": "7.xml"
+			}
+		},
+		{
+			"id": 8,
+			"element": null,
+			"event": {
+				"type": "input",
+				"x": 388,
+				"y": 1241,
+				"text": "faiza.shehzadi@ebricks-inc.com"
+
+			},
+			"screen": {
+				"screenshotName": "8.jpg",
+				"dom": "8.xml"
+			}
+		},
+		{
+			"id": 9,
+			"element": null,
+			"event": {
+				"type": "swipe",
+				"startPointX": 1387,
+				"startPointY": 1322,
+				"endPointX": 1403,
+				"endPointY": 399,
+				"duration": 2
+
+			},
+			"screen": {
+				"screenshotName": "9.jpg",
+				"dom": "9.xml"
+			}
+		},
+		{
+			"id": 10,
+			"element": null,
+			"event": {
+				"type": "tap",
+				"x": 472,
+				"y": 761
+			},
+			"screen": {
+				"screenshotName": "10.jpg",
+				"dom": "10.xml"
+			}
+		},
+		{
+			"id": 11,
+			"element": null,
+			"event": {
+				"type": "input",
+				"x": 472,
+				"y": 872,
+				"text": "@Faiza13"
+
+			},
+			"screen": {
+				"screenshotName": "11.jpg",
+				"dom": "11.xml"
+			}
+		},
+		{
+			"id": 12,
+			"element": null,
+			"event": {
+				"type": "tap",
+				"x": 730,
+				"y": 1203
+			},
+			"screen": {
+				"screenshotName": "12.jpg",
+				"dom": "12.xml"
 			}
 		}
 	]

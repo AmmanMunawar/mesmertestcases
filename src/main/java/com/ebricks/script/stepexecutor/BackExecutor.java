@@ -11,6 +11,7 @@ public class BackExecutor extends StepExecutor {
     }
 
     public StepExecutorResponse execute() {
+
         AppiumService.getInstance().back();
         this.stepExecutorResponse.setUiElement(this.step.getElement());
         this.stepExecutorResponse.getStepStatus().setStatus(true);

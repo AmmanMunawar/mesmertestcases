@@ -1,6 +1,7 @@
 package com.ebricks.script.stepexecutor.response;
 
 public class Screen {
+
     private String screenshotName;
     private String dom;
 

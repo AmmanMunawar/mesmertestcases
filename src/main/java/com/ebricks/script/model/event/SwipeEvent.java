@@ -1,7 +1,7 @@
 package com.ebricks.script.model.event;
 
-
 public class SwipeEvent extends Event {
+
     private int startPointX;
     private int startPointY;
     private int endPointX;
@@ -47,6 +47,4 @@ public class SwipeEvent extends Event {
     public void setEndPointY(int endPointY) {
         this.endPointY = endPointY;
     }
-
-
 }

@@ -5,15 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Path {
-    private String basePath = System.getProperty("user.dir");
-    private String directoryPath = "/resources/results/";
+
     private static Path instance;
+    private String basePath = System.getProperty("user.dir");
+    private String resultPath = "/resources/results/";
+    private String screenShotPath = "/screenshots";
+    private String domPath = "/dom";
+    private String testCasePath = basePath + "/resources/testcases/";
 
-    private Path() {
-
-    }
+    private Path() {}
 
     public static Path getinstance() {
+
         if (instance == null) {
             instance = new Path();
         }
@@ -21,14 +24,29 @@ public class Path {
     }
 
     public void makeDirectory() {
+
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("HH-mm-ss");
-        this.directoryPath = this.getBasePath() + this.getDirectoryPath() + "Result-" + formatter.format(date);
+        this.resultPath = this.getBasePath() + this.getResultPath() + "Result-" + formatter.format(date);
+        this.screenShotPath = this.resultPath + this.screenShotPath;
+        this.domPath = this.resultPath + this.domPath;
         try {
-            new File(this.directoryPath).mkdir();
+
+            new File(this.resultPath).mkdir();
+            new File(this.screenShotPath).mkdir();
+            new File(this.domPath).mkdir();
         } catch (Exception e) {
+
             System.out.println(e);
         }
+    }
+
+    public String getTestCasePath() {
+        return testCasePath;
+    }
+
+    public void setTestCasePath(String testCasePath) {
+        this.testCasePath = testCasePath;
     }
 
     public String getBasePath() {
@@ -39,11 +57,27 @@ public class Path {
         this.basePath = basePath;
     }
 
-    public String getDirectoryPath() {
-        return directoryPath;
+    public String getResultPath() {
+        return resultPath;
     }
 
-    public void setDirectoryPath(String directoryPath) {
-        this.directoryPath = directoryPath;
+    public void setResultPath(String resultPath) {
+        this.resultPath = resultPath;
+    }
+
+    public String getScreenShotPath() {
+        return screenShotPath;
+    }
+
+    public void setScreenShotPath(String screenShotPath) {
+        this.screenShotPath = screenShotPath;
+    }
+
+    public String getDomPath() {
+        return domPath;
+    }
+
+    public void setDomPath(String domPath) {
+        this.domPath = domPath;
     }
 }

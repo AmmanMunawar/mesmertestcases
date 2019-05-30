@@ -1,10 +1,10 @@
 package com.ebricks.script.model.event;
 
-import com.ebricks.script.model.UIElement;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(
+
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
         visible = true,
