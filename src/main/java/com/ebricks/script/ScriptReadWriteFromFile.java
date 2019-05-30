@@ -3,13 +3,11 @@ package com.ebricks.script;
 import com.ebricks.script.executor.StepExecutorResponceWrapper;
 import com.ebricks.script.service.AppiumService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class ScriptReadWriteFromFile {
 
@@ -32,10 +30,7 @@ public class ScriptReadWriteFromFile {
 
         String filename = id+".xml";
         try {
-
-            FileWriter fileWriter = new FileWriter(Path.getinstance().getDomPath() + "/" + filename);
-            fileWriter.write(AppiumService.getInstance().getPageSourse());
-            fileWriter.close();
+            FileUtils.writeStringToFile(new File(Path.getinstance().getDomPath() + "/" + filename),AppiumService.getInstance().getPageSourse());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,20 +51,7 @@ public class ScriptReadWriteFromFile {
         }
     }
 
-    public String readXMLFile(String filePath) {
-
-        StringBuilder contentBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-
-            String sCurrentLine;
-            while ((sCurrentLine = br.readLine()) != null) {
-
-                contentBuilder.append(sCurrentLine).append("\n");
-            }
-        } catch (IOException e) {
-
-            LOGGER.error("Read XML File Exception", e);
-        }
-        return contentBuilder.toString();
+    public String readXMLFile(String filePath) throws IOException {
+        return FileUtils.readFileToString(new File(filePath));
     }
 }
