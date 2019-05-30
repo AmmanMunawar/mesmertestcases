@@ -15,23 +15,23 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindXYElements {
+public class FindElement {
 
-    private static final Logger LOGGER = LogManager.getLogger(FindXYElements.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(FindElement.class.getName());
     private List<Element> elements = new ArrayList<>();
-    private static FindXYElements instance;
+    private static FindElement instance;
 
-    private FindXYElements() {
+    private FindElement() {
     }
 
-    public static FindXYElements getInstance() {
+    public static FindElement getInstance() {
         if (instance == null) {
-            instance = new FindXYElements();
+            instance = new FindElement();
         }
         return instance;
     }
 
-    public UIElement findUIelement(int x, int y, String xmlString) {
+    public UIElement findUIElementByXY(int x, int y, String xmlString) {
         Document xmlDocument = convertXMLStringToDocument(xmlString);
         NodeList xmlNodeList = xmlDocument.getElementsByTagName("*");
         for (int i = 0; i < xmlNodeList.getLength(); i++) {
@@ -119,7 +119,5 @@ public class FindXYElements {
         uiElementTemp.setType(eElement.getAttribute("class"));
         return uiElementTemp;
     }
-
-
 
 }

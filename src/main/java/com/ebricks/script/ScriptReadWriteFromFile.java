@@ -30,15 +30,16 @@ public class ScriptReadWriteFromFile {
 
     public String savePageResource(int id) {
 
+        String filename = id+".xml";
         try {
 
-            FileWriter fileWriter = new FileWriter(Path.getinstance().getDomPath() + "/" + id + ".xml");
+            FileWriter fileWriter = new FileWriter(Path.getinstance().getDomPath() + "/" + filename);
             fileWriter.write(AppiumService.getInstance().getPageSourse());
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return id + ".jpg";
+        return filename;
     }
 
     public void saveStepExecutorReponse(StepExecutorResponceWrapper stepExecutorResponces) {

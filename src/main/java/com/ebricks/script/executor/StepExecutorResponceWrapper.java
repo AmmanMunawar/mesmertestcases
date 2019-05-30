@@ -16,7 +16,4 @@ public class StepExecutorResponceWrapper {
         this.stepExecutorResponses = stepExecutorResponses;
     }
 
-    public void addObject(StepExecutorResponse stepExecutorResponse) {
-        this.stepExecutorResponses.add(stepExecutorResponse);
-    }
 }

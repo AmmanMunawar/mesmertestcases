@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -23,6 +23,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
 
 public class ScriptExecutor {
 
@@ -35,7 +39,6 @@ public class ScriptExecutor {
 
         AppiumService.getInstance().createSession();
         Path.getinstance().makeDirectory();
-        stepExecutorResponces = new StepExecutorResponceWrapper();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
 
@@ -52,13 +55,14 @@ public class ScriptExecutor {
 
     public void process() throws InterruptedException {
 
+        stepExecutorResponces = new StepExecutorResponceWrapper();
         for (Step step : this.scriptInputData.getSteps()) {
 
             StepExecutor stepExecutor = StepFactory.getInstance().getStepExecutor(step);
             stepExecutor.init();
             StepExecutorResponse stepExecutorResponse = stepExecutor.execute();
             Thread.sleep(3000);
-            this.stepExecutorResponces.addObject(stepExecutorResponse);
+            this.stepExecutorResponces.getStepExecutorResponses().add(stepExecutorResponse);
 
         }
 

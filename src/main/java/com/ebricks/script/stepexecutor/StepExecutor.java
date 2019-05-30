@@ -2,7 +2,7 @@ package com.ebricks.script.stepexecutor;
 
 import com.ebricks.script.Path;
 import com.ebricks.script.ScriptReadWriteFromFile;
-import com.ebricks.script.executor.FindXYElements;
+import com.ebricks.script.executor.FindElement;
 import com.ebricks.script.executor.ScriptExecutor;
 import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
@@ -40,8 +40,8 @@ public abstract class StepExecutor {
             if (step.getEvent().getType().equals("tap")) {
 
                 TapEvent tapEvent = (TapEvent) this.step.getEvent();
-                UIElement recordedUIElement = FindXYElements.getInstance().
-                        findUIelement(
+                UIElement recordedUIElement = FindElement.getInstance().
+                        findUIElementByXY(
                                 tapEvent.getX(), tapEvent.getY(), AppiumService.getInstance().getPageSourse());
 
                 UIElement detectUIElement = scriptExecutor.findUIElement(
@@ -58,8 +58,8 @@ public abstract class StepExecutor {
             } else if (step.getEvent().getType().equals("input")) {
 
                 InputEvent inputEvent = (InputEvent) this.step.getEvent();
-                UIElement recordedUIElement = FindXYElements.getInstance().
-                        findUIelement(
+                UIElement recordedUIElement = FindElement.getInstance().
+                        findUIElementByXY(
                                 inputEvent.getX(), inputEvent.getY(), AppiumService.getInstance().getPageSourse());
                 UIElement detectUIElement = scriptExecutor.findUIElement(
                         ScriptReadWriteFromFile.getInstance().readXMLFile(Path.getinstance().getTestCasePath() + "testcases01/dom/" + this.step.getScreen().getDom()),
@@ -83,7 +83,6 @@ public abstract class StepExecutor {
             LOGGER.error("StepExecutorException", e);
         }
     }
-
 
     public abstract StepExecutorResponse execute();
 }
