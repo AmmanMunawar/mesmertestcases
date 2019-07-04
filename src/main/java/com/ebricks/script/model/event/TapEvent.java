@@ -1,22 +1,29 @@
 package com.ebricks.script.model.event;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TapEvent extends Event {
-    private int x;
-    private int y;
+    private int startX;
+    private int startY;
 
-    public int getX() {
-        return x;
+    public TapEvent(){
+        setType("tap");
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public int getStartX() {
+        return startX;
     }
 
-    public int getY() {
-        return y;
+    public void setStartX(int startX) {
+        this.startX = startX;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public int getStartY() {
+        return startY;
+    }
+
+    public void setStartY(int startY) {
+        this.startY = startY;
     }
 }

@@ -1,8 +1,691 @@
 {
-	"deviceName": "192.168.155.101.5555",
-	"platformName": "Android",
-	"platformVersion": "9",
-	"automationName": "UiAutomator2",
-	"appiumIP":"127.0.0.1",
-	"appiumPort":4723
+	"success": true,
+	"data": {
+		"testCaseResultId": "5d1b2019f983022921995aba",
+		"executionFilesData": {
+			"steps": [
+				{
+					"accessibility": null,
+					"stepId": 1,
+					"type": "launch",
+					"sdkEventCaptured": true,
+					"screen": {
+						"activity": "com.wearehathway.apps.NomNomStock.Views.Onboarding.OnBoardingActivity",
+						"id": 1,
+						"image": "screenshot_1561568929072.png",
+						"dom": "dom_1561568929072.xml",
+						"compressedDom": "",
+						"orientation": "Portrait",
+						"fullImageUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/screenshot_1561568929072.png"
+					},
+					"event": {
+						"eventTime": 1561568928919,
+						"type": "launch"
+					},
+					"recordStats": [
+						{
+							"startTime": 1561568928870,
+							"endTime": 1561568928870,
+							"action": "USER_WAIT"
+						},
+						{
+							"startTime": 1561568928871,
+							"endTime": 1561568928925,
+							"action": "CHECK_SECUREAPP"
+						},
+						{
+							"startTime": 1561568928931,
+							"endTime": 1561568929071,
+							"action": "UNCOMPRESSE_DDOM"
+						},
+						{
+							"startTime": 1561568929072,
+							"endTime": 1561568929072,
+							"action": "DEVICE_ORIENTATION"
+						},
+						{
+							"startTime": 1561568929072,
+							"endTime": 1561568929072,
+							"action": "MANUAL_WAIT"
+						},
+						{
+							"startTime": 1561568929071,
+							"endTime": 1561568929104,
+							"action": "CURRENT_ACTIVITY"
+						},
+						{
+							"startTime": 1561568929075,
+							"endTime": 1561568930424,
+							"action": "SCREENSHOT"
+						},
+						{
+							"startTime": 1561568930424,
+							"endTime": 1561568930467,
+							"action": "PULL_SCREENSHOT_FROM_DEVICE"
+						},
+						{
+							"startTime": 1561568930471,
+							"endTime": 1561568930491,
+							"action": "SAVE_DOM_TO_FILE"
+						},
+						{
+							"startTime": 1561568930491,
+							"endTime": 1561568930554,
+							"action": "ZIP_DOM"
+						},
+						{
+							"startTime": 1561568928870,
+							"endTime": 1561568930555,
+							"action": "STEP_EXECUTION"
+						}
+					],
+					"device": {
+						"os": "7.1.1",
+						"densityDpi": 560,
+						"resolution": [
+							1440,
+							2560
+						],
+						"model": "Android SDK built for x86",
+						"label": "Android SDK built for x86"
+					},
+					"resourcePath": "patterns/5d13a696ec0fecde3c4c7a81",
+					"nodeUniqueId": 1,
+					"result": {
+						"success": true
+					},
+					"domUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_1561568929072.xml",
+					"uda": [],
+					"udaActions": [],
+					"errors": [],
+					"assertions": []
+				},
+				{
+					"result": {
+						"success": true
+					},
+					"nodeUniqueId": 2,
+					"resourcePath": "patterns/5d13a696ec0fecde3c4c7a81",
+					"device": {
+						"label": "Android SDK built for x86",
+						"model": "Android SDK built for x86",
+						"resolution": [
+							1440,
+							2560
+						],
+						"densityDpi": 560,
+						"os": "7.1.1"
+					},
+					"recordStats": [
+						{
+							"action": "POST_PREVIOUS_STEP",
+							"endTime": 1561568930607,
+							"startTime": 1561568930557
+						},
+						{
+							"action": "USER_WAIT",
+							"endTime": 1561568937164,
+							"startTime": 1561568930555
+						},
+						{
+							"action": "COMPRESSED_DOM",
+							"endTime": 1561568937215,
+							"startTime": 1561568937177
+						},
+						{
+							"action": "UNCOMPRESSE_DDOM",
+							"endTime": 1561568937292,
+							"startTime": 1561568937215
+						},
+						{
+							"action": "DEVICE_ORIENTATION",
+							"endTime": 1561568937293,
+							"startTime": 1561568937293
+						},
+						{
+							"action": "MANUAL_WAIT",
+							"endTime": 1561568937293,
+							"startTime": 1561568937293
+						},
+						{
+							"action": "CURRENT_ACTIVITY",
+							"endTime": 1561568937319,
+							"startTime": 1561568937292
+						},
+						{
+							"action": "SCREENSHOT",
+							"endTime": 1561568938002,
+							"startTime": 1561568937294
+						},
+						{
+							"action": "PULL_SCREENSHOT_FROM_DEVICE",
+							"endTime": 1561568938029,
+							"startTime": 1561568938002
+						},
+						{
+							"action": "SAVE_DOM_TO_FILE",
+							"endTime": 1561568938205,
+							"startTime": 1561568938078
+						},
+						{
+							"action": "ZIP_DOM",
+							"endTime": 1561568938218,
+							"startTime": 1561568938205
+						},
+						{
+							"action": "SAVE_DOM_TO_FILE",
+							"endTime": 1561568938220,
+							"startTime": 1561568938219
+						},
+						{
+							"action": "ZIP_COMPRESSED_DOM",
+							"endTime": 1561568938227,
+							"startTime": 1561568938220
+						},
+						{
+							"action": "STEP_EXECUTION",
+							"endTime": 1561568938280,
+							"startTime": 1561568930555
+						}
+					],
+					"event": {
+						"type": "tap",
+						"startY": 2308,
+						"startX": 1348,
+						"eventTime": 1561568938280
+					},
+					"screen": {
+						"orientation": "Portrait",
+						"compressedDom": "dom_compressed_1561568937293.xml",
+						"dom": "dom_1561568937293.xml",
+						"image": "screenshot_1561568937293.png",
+						"id": 2,
+						"activity": "com.wearehathway.apps.NomNomStock.Views.Onboarding.OnBoardingActivity",
+						"fullImageUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/screenshot_1561568937293.png"
+					},
+					"sdkEventCaptured": true,
+					"type": "tap",
+					"stepId": 2,
+					"accessibility": null,
+					"domUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_1561568937293.xml",
+					"compressedDomUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_compressed_1561568937293.xml",
+					"uda": [],
+					"udaActions": [],
+					"errors": [],
+					"assertions": []
+				},
+				{
+					"accessibility": null,
+					"stepId": 3,
+					"type": "tap",
+					"sdkEventCaptured": true,
+					"screen": {
+						"activity": "com.wearehathway.apps.NomNomStock.Views.Onboarding.OnBoardingActivity",
+						"id": 3,
+						"image": "screenshot_1561568961610.png",
+						"dom": "dom_1561568961610.xml",
+						"compressedDom": "dom_compressed_1561568961610.xml",
+						"orientation": "Portrait",
+						"fullImageUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/screenshot_1561568961610.png"
+					},
+					"event": {
+						"eventTime": 1561568962148,
+						"startX": 1284,
+						"startY": 2304,
+						"type": "tap"
+					},
+					"recordStats": [
+						{
+							"startTime": 1561568938282,
+							"endTime": 1561568938342,
+							"action": "POST_PREVIOUS_STEP"
+						},
+						{
+							"startTime": 1561568938280,
+							"endTime": 1561568961528,
+							"action": "USER_WAIT"
+						},
+						{
+							"startTime": 1561568961539,
+							"endTime": 1561568961571,
+							"action": "COMPRESSED_DOM"
+						},
+						{
+							"startTime": 1561568961571,
+							"endTime": 1561568961609,
+							"action": "UNCOMPRESSE_DDOM"
+						},
+						{
+							"startTime": 1561568961610,
+							"endTime": 1561568961610,
+							"action": "DEVICE_ORIENTATION"
+						},
+						{
+							"startTime": 1561568961610,
+							"endTime": 1561568961610,
+							"action": "MANUAL_WAIT"
+						},
+						{
+							"startTime": 1561568961609,
+							"endTime": 1561568961623,
+							"action": "CURRENT_ACTIVITY"
+						},
+						{
+							"startTime": 1561568961611,
+							"endTime": 1561568962027,
+							"action": "SCREENSHOT"
+						},
+						{
+							"startTime": 1561568962027,
+							"endTime": 1561568962046,
+							"action": "PULL_SCREENSHOT_FROM_DEVICE"
+						},
+						{
+							"startTime": 1561568962061,
+							"endTime": 1561568962108,
+							"action": "SAVE_DOM_TO_FILE"
+						},
+						{
+							"startTime": 1561568962108,
+							"endTime": 1561568962113,
+							"action": "ZIP_DOM"
+						},
+						{
+							"startTime": 1561568962113,
+							"endTime": 1561568962115,
+							"action": "SAVE_DOM_TO_FILE"
+						},
+						{
+							"startTime": 1561568962115,
+							"endTime": 1561568962127,
+							"action": "ZIP_COMPRESSED_DOM"
+						},
+						{
+							"startTime": 1561568938280,
+							"endTime": 1561568962148,
+							"action": "STEP_EXECUTION"
+						}
+					],
+					"device": {
+						"os": "7.1.1",
+						"densityDpi": 560,
+						"resolution": [
+							1440,
+							2560
+						],
+						"model": "Android SDK built for x86",
+						"label": "Android SDK built for x86"
+					},
+					"resourcePath": "patterns/5d13a696ec0fecde3c4c7a81",
+					"nodeUniqueId": 3,
+					"result": {
+						"success": true
+					},
+					"domUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_1561568961610.xml",
+					"compressedDomUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_compressed_1561568961610.xml",
+					"uda": [],
+					"udaActions": [],
+					"errors": [],
+					"assertions": []
+				},
+				{
+					"result": {
+						"success": true
+					},
+					"nodeUniqueId": 4,
+					"resourcePath": "patterns/5d13a696ec0fecde3c4c7a81",
+					"device": {
+						"label": "Android SDK built for x86",
+						"model": "Android SDK built for x86",
+						"resolution": [
+							1440,
+							2560
+						],
+						"densityDpi": 560,
+						"os": "7.1.1"
+					},
+					"recordStats": [
+						{
+							"action": "POST_PREVIOUS_STEP",
+							"endTime": 1561568962175,
+							"startTime": 1561568962149
+						},
+						{
+							"action": "USER_WAIT",
+							"endTime": 1561568964459,
+							"startTime": 1561568962148
+						},
+						{
+							"action": "COMPRESSED_DOM",
+							"endTime": 1561568964504,
+							"startTime": 1561568964470
+						},
+						{
+							"action": "UNCOMPRESSE_DDOM",
+							"endTime": 1561568964548,
+							"startTime": 1561568964504
+						},
+						{
+							"action": "DEVICE_ORIENTATION",
+							"endTime": 1561568964549,
+							"startTime": 1561568964549
+						},
+						{
+							"action": "MANUAL_WAIT",
+							"endTime": 1561568964549,
+							"startTime": 1561568964549
+						},
+						{
+							"action": "CURRENT_ACTIVITY",
+							"endTime": 1561568964572,
+							"startTime": 1561568964548
+						},
+						{
+							"action": "SCREENSHOT",
+							"endTime": 1561568964980,
+							"startTime": 1561568964552
+						},
+						{
+							"action": "PULL_SCREENSHOT_FROM_DEVICE",
+							"endTime": 1561568964998,
+							"startTime": 1561568964980
+						},
+						{
+							"action": "SAVE_DOM_TO_FILE",
+							"endTime": 1561568965100,
+							"startTime": 1561568965007
+						},
+						{
+							"action": "ZIP_DOM",
+							"endTime": 1561568965107,
+							"startTime": 1561568965100
+						},
+						{
+							"action": "SAVE_DOM_TO_FILE",
+							"endTime": 1561568965108,
+							"startTime": 1561568965108
+						},
+						{
+							"action": "ZIP_COMPRESSED_DOM",
+							"endTime": 1561568965112,
+							"startTime": 1561568965108
+						},
+						{
+							"action": "STEP_EXECUTION",
+							"endTime": 1561568965135,
+							"startTime": 1561568962148
+						}
+					],
+					"event": {
+						"type": "tap",
+						"startY": 2304,
+						"startX": 1284,
+						"eventTime": 1561568965135
+					},
+					"screen": {
+						"orientation": "Portrait",
+						"compressedDom": "dom_compressed_1561568964549.xml",
+						"dom": "dom_1561568964549.xml",
+						"image": "screenshot_1561568964549.png",
+						"id": 4,
+						"activity": "com.wearehathway.apps.NomNomStock.Views.Onboarding.OnBoardingActivity",
+						"fullImageUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/screenshot_1561568964549.png"
+					},
+					"sdkEventCaptured": true,
+					"type": "tap",
+					"stepId": 4,
+					"accessibility": null,
+					"domUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_1561568964549.xml",
+					"compressedDomUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_compressed_1561568964549.xml",
+					"uda": [],
+					"udaActions": [],
+					"errors": [],
+					"assertions": []
+				},
+				{
+					"accessibility": null,
+					"stepId": 5,
+					"type": "tap",
+					"sdkEventCaptured": true,
+					"screen": {
+						"activity": "com.wearehathway.apps.NomNomStock.Views.Welcome.WelcomeActivity",
+						"id": 5,
+						"image": "screenshot_1561568967857.png",
+						"dom": "dom_1561568967857.xml",
+						"compressedDom": "dom_compressed_1561568967857.xml",
+						"orientation": "Portrait",
+						"fullImageUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/screenshot_1561568967857.png"
+					},
+					"event": {
+						"eventTime": 1561568969330,
+						"startX": 740,
+						"startY": 1336,
+						"type": "tap"
+					},
+					"recordStats": [
+						{
+							"startTime": 1561568965136,
+							"endTime": 1561568965159,
+							"action": "POST_PREVIOUS_STEP"
+						},
+						{
+							"startTime": 1561568965135,
+							"endTime": 1561568967768,
+							"action": "USER_WAIT"
+						},
+						{
+							"startTime": 1561568967781,
+							"endTime": 1561568967814,
+							"action": "COMPRESSED_DOM"
+						},
+						{
+							"startTime": 1561568967814,
+							"endTime": 1561568967855,
+							"action": "UNCOMPRESSE_DDOM"
+						},
+						{
+							"startTime": 1561568967857,
+							"endTime": 1561568967857,
+							"action": "DEVICE_ORIENTATION"
+						},
+						{
+							"startTime": 1561568967857,
+							"endTime": 1561568967857,
+							"action": "MANUAL_WAIT"
+						},
+						{
+							"startTime": 1561568967855,
+							"endTime": 1561568967882,
+							"action": "CURRENT_ACTIVITY"
+						},
+						{
+							"startTime": 1561568967859,
+							"endTime": 1561568968989,
+							"action": "SCREENSHOT"
+						},
+						{
+							"startTime": 1561568968989,
+							"endTime": 1561568969034,
+							"action": "PULL_SCREENSHOT_FROM_DEVICE"
+						},
+						{
+							"startTime": 1561568969051,
+							"endTime": 1561568969119,
+							"action": "SAVE_DOM_TO_FILE"
+						},
+						{
+							"startTime": 1561568969119,
+							"endTime": 1561568969129,
+							"action": "ZIP_DOM"
+						},
+						{
+							"startTime": 1561568969129,
+							"endTime": 1561568969133,
+							"action": "SAVE_DOM_TO_FILE"
+						},
+						{
+							"startTime": 1561568969133,
+							"endTime": 1561568969231,
+							"action": "ZIP_COMPRESSED_DOM"
+						},
+						{
+							"startTime": 1561568965135,
+							"endTime": 1561568969330,
+							"action": "STEP_EXECUTION"
+						}
+					],
+					"device": {
+						"os": "7.1.1",
+						"densityDpi": 560,
+						"resolution": [
+							1440,
+							2560
+						],
+						"model": "Android SDK built for x86",
+						"label": "Android SDK built for x86"
+					},
+					"resourcePath": "patterns/5d13a696ec0fecde3c4c7a81",
+					"nodeUniqueId": 5,
+					"result": {
+						"success": true
+					},
+					"domUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_1561568967857.xml",
+					"compressedDomUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_compressed_1561568967857.xml",
+					"uda": [],
+					"udaActions": [],
+					"errors": [],
+					"assertions": []
+				},
+				{
+					"result": {
+						"success": true
+					},
+					"nodeUniqueId": 6,
+					"resourcePath": "patterns/5d13a696ec0fecde3c4c7a81",
+					"device": {
+						"label": "Android SDK built for x86",
+						"model": "Android SDK built for x86",
+						"resolution": [
+							1440,
+							2560
+						],
+						"densityDpi": 560,
+						"os": "7.1.1"
+					},
+					"recordStats": [
+						{
+							"action": "POST_PREVIOUS_STEP",
+							"endTime": 1561568969417,
+							"startTime": 1561568969332
+						},
+						{
+							"action": "USER_WAIT",
+							"endTime": 1561568971087,
+							"startTime": 1561568969330
+						},
+						{
+							"action": "COMPRESSED_DOM",
+							"endTime": 1561568971149,
+							"startTime": 1561568971097
+						},
+						{
+							"action": "UNCOMPRESSE_DDOM",
+							"endTime": 1561568971241,
+							"startTime": 1561568971149
+						},
+						{
+							"action": "DEVICE_ORIENTATION",
+							"endTime": 1561568971243,
+							"startTime": 1561568971243
+						},
+						{
+							"action": "MANUAL_WAIT",
+							"endTime": 1561568971243,
+							"startTime": 1561568971243
+						},
+						{
+							"action": "CURRENT_ACTIVITY",
+							"endTime": 1561568971297,
+							"startTime": 1561568971241
+						},
+						{
+							"action": "SCREENSHOT",
+							"endTime": 1561568972157,
+							"startTime": 1561568971245
+						},
+						{
+							"action": "PULL_SCREENSHOT_FROM_DEVICE",
+							"endTime": 1561568972176,
+							"startTime": 1561568972157
+						},
+						{
+							"action": "SAVE_DOM_TO_FILE",
+							"endTime": 1561568972268,
+							"startTime": 1561568972196
+						},
+						{
+							"action": "ZIP_DOM",
+							"endTime": 1561568972286,
+							"startTime": 1561568972268
+						},
+						{
+							"action": "SAVE_DOM_TO_FILE",
+							"endTime": 1561568972287,
+							"startTime": 1561568972286
+						},
+						{
+							"action": "ZIP_COMPRESSED_DOM",
+							"endTime": 1561568972298,
+							"startTime": 1561568972287
+						},
+						{
+							"action": "STEP_EXECUTION",
+							"endTime": 1561568972420,
+							"startTime": 1561568969330
+						}
+					],
+					"event": {
+						"type": "end",
+						"eventTime": 1561568972420
+					},
+					"screen": {
+						"orientation": "Portrait",
+						"compressedDom": "dom_compressed_1561568971243.xml",
+						"dom": "dom_1561568971243.xml",
+						"image": "screenshot_1561568971243.png",
+						"id": 6,
+						"activity": "com.wearehathway.apps.NomNomStock.Views.LogIn.LogInActivity",
+						"fullImageUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/screenshot_1561568971243.png"
+					},
+					"sdkEventCaptured": true,
+					"type": "end",
+					"stepId": 6,
+					"accessibility": null,
+					"domUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_1561568971243.xml",
+					"compressedDomUrl": "http://127.0.0.1:9000/mesmer-static-content/mesmer-dev/uploads/patterns/5d13a696ec0fecde3c4c7a81/dom/dom_compressed_1561568971243.xml",
+					"uda": [],
+					"udaActions": [],
+					"errors": [],
+					"assertions": []
+				}
+			],
+			"name": "5d13a696ec0fecde3c4c7a81",
+			"testCaseType": "pattern",
+			"description": "defaultTestGroup",
+			"group": "defaultTestGroup",
+			"packageId": "com.olo.dairyqueen.preproduction",
+			"projectKey": "5d13a6844d39c02120e48a9f",
+			"detectElementAtReplay": true,
+			"device": {
+				"label": "Android SDK built for x86",
+				"model": "Android SDK built for x86",
+				"resolution": [
+					1440,
+					2560
+				],
+				"densityDpi": 560,
+				"os": "7.1.1"
+			}
+		}
+	}
 }

@@ -1,7 +1,10 @@
 package com.ebricks.script.model.event;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.json.JSONPropertyIgnore;
 
 @JsonTypeInfo(
 
@@ -20,9 +23,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = LaunchEvent.class, name = "launch"),
         @JsonSubTypes.Type(value = InputEvent.class, name = "input"),
         @JsonSubTypes.Type(value = SwipeEvent.class, name = "swipe"),
+        @JsonSubTypes.Type(value = EndEvent.class, name = "end"),
 })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
+    @JsonIgnore
     private String type;
+    private long eventTime;
 
     public String getType() {
         return type;
@@ -30,5 +37,13 @@ public class Event {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public long getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(long eventTime) {
+        this.eventTime = eventTime;
     }
 }

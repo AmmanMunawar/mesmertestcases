@@ -1,16 +1,28 @@
 package com.ebricks.script.stepexecutor.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Screen {
 
-    private String screenshotName;
+    private String image;
     private String dom;
+    private String fullImageUrl;
 
-    public String getScreenshotName() {
-        return screenshotName;
+    public String getFullImageUrl() {
+        return fullImageUrl;
     }
 
-    public void setScreenshotName(String screenshotName) {
-        this.screenshotName = screenshotName;
+    public void setFullImageUrl(String fullImageUrl) {
+        this.fullImageUrl = fullImageUrl;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDom() {

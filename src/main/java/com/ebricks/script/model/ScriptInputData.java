@@ -1,17 +1,35 @@
 package com.ebricks.script.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ebricks.script.config.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ScriptInputData {
-    private List<Step> steps = new ArrayList<Step>();
 
 
-    public List<Step> getSteps() {
-        return steps;
+    @JsonProperty("success")
+    private Boolean success;
+    @JsonProperty("data")
+    private Data data;
+
+    @JsonProperty("success")
+    public Boolean getSuccess() {
+        return success;
     }
 
-    public void setSteps(List<Step> steps) {
-        this.steps = steps;
+    @JsonProperty("success")
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
+
+    @JsonProperty("data")
+    public Data getData() {
+        return data;
+    }
+
+    @JsonProperty("data")
+    public void setData(Data data) {
+        this.data = data;
     }
 }

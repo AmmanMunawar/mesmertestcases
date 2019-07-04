@@ -1,16 +1,21 @@
 package com.ebricks.script.stepexecutor.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class StepStatus {
-    private boolean status = false;
+
+    private boolean success = false;
 
     public boolean isStatus() {
-        return status;
+        return this.success;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public boolean isSuccess() {
+        return success;
     }
-    public boolean getStatus(){
-        return this.status;
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

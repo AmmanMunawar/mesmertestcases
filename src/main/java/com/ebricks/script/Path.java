@@ -1,17 +1,26 @@
 package com.ebricks.script;
 
+import com.ebricks.script.config.Configuration;
+
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Path {
 
     private static Path instance;
     private String basePath = System.getProperty("user.dir");
-    private String resultPath = "/resources/results/";
-    private String screenShotPath = "/screenshots";
-    private String domPath = "/dom";
-    private String testCasePath = basePath + "/resources/testcases/";
+    private String testCasePath = basePath + "/executions/" +
+            Configuration.getProjectKey() + "/testcases/" + Configuration.getInstance().getTESTCASES().get(0).getId() + "/dom/";
+
+    private String imagesPath = basePath + "/executions/" +
+            Configuration.getProjectKey() + "/testcases/" + Configuration.getInstance().getTESTCASES().get(0).getId() + "/images/";
+
+    private String scriptPath = System.getProperty("user.dir") +
+            "/executions/" + Configuration.getProjectKey() + "/testcases/" +
+            Configuration.getInstance().getTESTCASES().get(0).getId() + "/data.json";
+
+    private String outpurImageDir = "executions/" + Configuration.getProjectKey() + "/output/screenshots/";
+    private String domOutputDir = "executions/" + Configuration.getProjectKey() + "/output/dom/";
+    private String loadingDirPath = "executions/" + Configuration.getProjectKey() + "/output/loading/";
 
     private Path() {}
 
@@ -23,61 +32,43 @@ public class Path {
         return instance;
     }
 
-    public void makeDirectory() {
+    public void makeDirs() {
 
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("HH-mm-ss");
-        this.resultPath = this.getBasePath() + this.getResultPath() + "Result-" + formatter.format(date);
-        this.screenShotPath = this.resultPath + this.screenShotPath;
-        this.domPath = this.resultPath + this.domPath;
-        try {
+        File testCaseDir = new File("executions/" + Configuration.getProjectKey() + "/testcases/" + Configuration.getInstance().getTESTCASES().get(0).getId());
+        File outputDir = new File("executions/" + Configuration.getProjectKey() + "/output");
+        File testcaseImageDir = new File("executions/" + Configuration.getProjectKey() + "/testcases/" + Configuration.getInstance().getTESTCASES().get(0).getId() + "/images");
+        File testcaseDOMDir = new File("executions/" + Configuration.getProjectKey() + "/testcases/" + Configuration.getInstance().getTESTCASES().get(0).getId() + "/dom");
+        File outputImageDir = new File("executions/" + Configuration.getProjectKey() + "/output/screenshots/");
+        File ouputDOMDir = new File("executions/" + Configuration.getProjectKey() + "/output/dom/");
+        File loadingScreenShots = new File("executions/" + Configuration.getProjectKey() + "/output/loading/");
 
-            new File(this.resultPath).mkdir();
-            new File(this.screenShotPath).mkdir();
-            new File(this.domPath).mkdir();
-        } catch (Exception e) {
+        testcaseDOMDir.mkdir();
+        outputDir.mkdirs();
+        testCaseDir.mkdirs();
+        testcaseImageDir.mkdir();
+        outputImageDir.mkdirs();
+        ouputDOMDir.mkdirs();
+        loadingScreenShots.mkdirs();
 
-            System.out.println(e);
-        }
     }
 
     public String getTestCasePath() {
         return testCasePath;
     }
 
-    public void setTestCasePath(String testCasePath) {
-        this.testCasePath = testCasePath;
+    public String getImagesPath() {
+        return imagesPath;
     }
 
-    public String getBasePath() {
-        return basePath;
+    public String getOutpurImageDir() {
+        return outpurImageDir;
     }
 
-    public void setBasePath(String basePath) {
-        this.basePath = basePath;
+    public String getDomOutputDir() {
+        return domOutputDir;
     }
 
-    public String getResultPath() {
-        return resultPath;
-    }
-
-    public void setResultPath(String resultPath) {
-        this.resultPath = resultPath;
-    }
-
-    public String getScreenShotPath() {
-        return screenShotPath;
-    }
-
-    public void setScreenShotPath(String screenShotPath) {
-        this.screenShotPath = screenShotPath;
-    }
-
-    public String getDomPath() {
-        return domPath;
-    }
-
-    public void setDomPath(String domPath) {
-        this.domPath = domPath;
+    public String getLoadingDirPath() {
+        return loadingDirPath;
     }
 }

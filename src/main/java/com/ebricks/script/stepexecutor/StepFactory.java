@@ -41,8 +41,10 @@ public class StepFactory {
         } else if (step.getEvent().getType().equals("swipe")) {
 
             return new SwipeExecutor(step);
-        }
+        } else if (step.getEvent().getType().equals("end")) {
 
+            return new EndExecutor(step);
+        }
 
         return null;
     }

@@ -1,19 +1,21 @@
 package com.ebricks.script.executor;
 
-import com.ebricks.script.stepexecutor.response.StepExecutorResponse;
+import com.ebricks.script.model.Step;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class StepExecutorResponceWrapper {
-    private List<StepExecutorResponse> stepExecutorResponses = new ArrayList<>();
 
-    public List<StepExecutorResponse> getStepExecutorResponses() {
-        return stepExecutorResponses;
+    private List<Step> steps = new ArrayList<>();
+
+    public List<Step> getSteps() {
+        return steps;
     }
 
-    public void setStepExecutorResponses(List<StepExecutorResponse> stepExecutorResponses) {
-        this.stepExecutorResponses = stepExecutorResponses;
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
     }
-
 }

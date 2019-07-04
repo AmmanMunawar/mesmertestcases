@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<project name="appiumdemo" default="run" basedir=".">
+
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="main-class" value="com.ebricks.script.Main"/>
+
+    <condition property="isUnix">
+        <and>
+            <os family="mac"/>
+
+            <not>
+                <available file="lib/maven-deps-Path.txt"/>
+            </not>
+        </and>
+    </condition>
+
+
+    <target name="forUnix" if="isUnix">
+
+        <echo message="Starting Unix target. OS is ${os.name}"/>
+        <exec dir="lib" executable="/bin/bash">
+            <arg value="-c"/>
+            <arg value="echo ${PWD}"/>
+        </exec>
+
+        <!-- Executing Maven for testsuites_pom.xml -->
+        <exec executable="/bin/sh">
+            <arg value="-c"/>
+            <arg value="mvn -f pom.xml dependency:build-classpath -Dmdep.outputFile=lib/maven-deps-Path.txt"/>
+        </exec>
+
+    </target>
+
+    <target name="compile" depends="forUnix">
+        <delete dir="${classes.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <loadfile property="testsuitesCP" srcFile="lib/maven-deps-Path.txt"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+            <classpath>
+                <pathelement path="${testsuitesCP}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <delete dir="${jar.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-class" value="${main-class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <loadfile property="testsuitesCP" srcFile="lib/maven-deps-Path.txt"/>
+        <java classname="${main-class}" fork="true">
+            <classpath>
+                <pathelement path="${testsuitesCP}"/>
+                <path location="${jar.dir}/${ant.project.name}.jar"/>
+            </classpath>
+            <arg value="5d0a1470e34209087c926499_10.59.49.316"/>
+        </java>
+    </target>
+
+</project>

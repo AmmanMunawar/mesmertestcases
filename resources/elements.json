@@ -1,169 +1,72 @@
 {
-	"steps": [
-
-		{
-			"id": 1,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 641,
-				"y": 2267
-			},
-			"screen": {
-				"screenshotName": "1.jpg",
-				"dom": "1.xml"
-			}
-		},
-		{
-			"id": 2,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 641,
-				"y": 2267
-			},
-			"screen": {
-				"screenshotName": "2.jpg",
-				"dom": "2.xml"
-			}
-		},
-		{
-			"id": 3,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 641,
-				"y": 2267
-			},
-			"screen": {
-				"screenshotName": "3.jpg",
-				"dom": "3.xml"
-			}
-		},
-		{
-			"id": 4,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 192,
-				"y": 2267
-			},
-			"screen": {
-				"screenshotName": "4.jpg",
-				"dom": "4.xml"
-			}
-		},
-		{
-			"id": 5,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 1241,
-				"y": 2298
-			},
-			"screen": {
-				"screenshotName": "5.jpg",
-				"dom": "5.xml"
-			}
-		},
-		{
-			"id": 6,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 599,
-				"y": 472
-			},
-			"screen": {
-				"screenshotName": "6.jpg",
-				"dom": "6.xml"
-			}
-		},
-		{
-			"id": 7,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 388,
-				"y": 1241
-			},
-			"screen": {
-				"screenshotName": "7.jpg",
-				"dom": "7.xml"
-			}
-		},
-		{
-			"id": 8,
-			"element": null,
-			"event": {
-				"type": "input",
-				"x": 388,
-				"y": 1241,
-				"text": "faiza.shehzadi@ebricks-inc.com"
-
-			},
-			"screen": {
-				"screenshotName": "8.jpg",
-				"dom": "8.xml"
-			}
-		},
-		{
-			"id": 9,
-			"element": null,
-			"event": {
-				"type": "swipe",
-				"startPointX": 1387,
-				"startPointY": 1322,
-				"endPointX": 1403,
-				"endPointY": 399,
-				"duration": 2
-
-			},
-			"screen": {
-				"screenshotName": "9.jpg",
-				"dom": "9.xml"
-			}
-		},
-		{
-			"id": 10,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 472,
-				"y": 761
-			},
-			"screen": {
-				"screenshotName": "10.jpg",
-				"dom": "10.xml"
-			}
-		},
-		{
-			"id": 11,
-			"element": null,
-			"event": {
-				"type": "input",
-				"x": 472,
-				"y": 872,
-				"text": "@Faiza13"
-
-			},
-			"screen": {
-				"screenshotName": "11.jpg",
-				"dom": "11.xml"
-			}
-		},
-		{
-			"id": 12,
-			"element": null,
-			"event": {
-				"type": "tap",
-				"x": 730,
-				"y": 1203
-			},
-			"screen": {
-				"screenshotName": "12.jpg",
-				"dom": "12.xml"
-			}
-		}
-	]
+	"EXECUTION_DATE": 1561973164,
+	"BUILD": {
+		"FILE_NAME": "1561568896439_DQ_Android-2.2.0(1630)-preProduction-release.apk",
+		"NAME": "Dairy Queen Preprod",
+		"PACKAGE": "com.olo.dairyqueen.preproduction",
+		"VERSION": "2.2.0",
+		"VERSION_LONG": "1630",
+		"UNINSTALL_BUILD": true
+	},
+	"EXECUTION_TYPE": 2,
+	"WALK": {
+		"duration": 60
+	},
+	"EXECUTION_MODE": {
+		"TYPE": "REPLAY",
+		"ORIENTATION": "Portrait"
+	},
+	"DEVICE": {
+		"os": "7.1.1",
+		"udid": "emulator-5554",
+		"label": null,
+		"model": "Android SDK built for x86",
+		"resolution": "1440x2560",
+		"_id": "5d19d0ddf98302292198f4da",
+		"platform": "android"
+	},
+	"RESULT_ID": "5d19d1aba604f032f9935cac",
+	"PROJECT_ID": "5d13a6844d39c02120e48a9f",
+	"USER_NAME": "",
+	"PASSWORD": "",
+	"UNINSTALL_AFTER_EXECUTION": false,
+	"DASHBOARD_URL": "http://localhost:3002",
+	"NODE_URL": "http://127.0.0.1:3131",
+	"TESTDATA_SCRIPTS": [],
+	"USERID": "5bac99bda4a47f38ebe6c9fd",
+	"APP_INFO": null,
+	"TESTCASES": [{
+		"id": "5d13a696ec0fecde3c4c7a81",
+		"type": "Pattern",
+		"name": "",
+		"tags": []
+	}],
+	"APPIUM_PORT": 4723,
+	"WDA_LOCAL_PORT": 8100,
+	"EXECUTION": {
+		"nodePath": "/usr/local/bin/node",
+		"appiumPath": "/usr/local/lib/node_modules/appium/build/lib/main.js",
+		"adbPath": "/Users/mesmer/Library/Android/sdk/platform-tools/adb",
+		"buildToolsPath": "/Users/mesmer/Library/Android/sdk/build-tools/29.0.0",
+		"xcrunPath": "/usr/bin/xcrun",
+		"xcodebuildPath": "/usr/bin/xcodebuild",
+		"fbsimctlPath": "fbsimctl",
+		"mobiledeviceToolPath": "/usr/local/bin/mobiledevice",
+		"iosdeployToolPath": "/usr/local/bin/ios-deploy",
+		"visionServiceUrl": "http://vision-prod.np.appsight.us:3000",
+		"imageCompareServiceUrl": "https://image-compare-staging.dev.mesmerhq.com",
+		"proxyServiceUrl": "https://35.160.38.219:3000",
+		"domUtilityServiceUrl": "http://dev.dom.service.np.appsight.us:2020",
+		"visionServiceEnabled": true,
+		"imageCompareServiceEnabled": true,
+		"domServiceEnabled": true,
+		"proxyServiceEnabled": false,
+		"anacondaEnvName": "py35cv",
+		"anacondaActivatePath": "activate",
+		"autoHandleIOSSystemDialog": false,
+		"pythonPath": "python2",
+		"textClassifierEnabled": true,
+		"vaVisualizerEnabled": false,
+		"customWDAPath": "/Users/mesmer/appsight-node-localhost/execution_engine/mesmer-execution-wda"
+	}
 }

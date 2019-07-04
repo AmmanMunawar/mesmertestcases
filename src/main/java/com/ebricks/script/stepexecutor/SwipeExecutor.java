@@ -3,7 +3,6 @@ package com.ebricks.script.stepexecutor;
 import com.ebricks.script.model.Step;
 import com.ebricks.script.model.event.SwipeEvent;
 import com.ebricks.script.service.AppiumService;
-import com.ebricks.script.stepexecutor.response.StepExecutorResponse;
 
 public class SwipeExecutor extends StepExecutor {
 
@@ -11,12 +10,12 @@ public class SwipeExecutor extends StepExecutor {
         super(step);
     }
 
-    public StepExecutorResponse execute() {
+    public Step execute() {
+
         SwipeEvent swipe = (SwipeEvent) step.getEvent();
         AppiumService.getInstance().swipe(
-                swipe.getStartPointX(), swipe.getStartPointY(), swipe.getEndPointX(), swipe.getEndPointY());
-        this.stepExecutorResponse.setUiElement(this.step.getElement());
-        this.stepExecutorResponse.getStepStatus().setStatus(true);
+                swipe.getStartX(), swipe.getStartY(), swipe.getEndX(), swipe.getEndY(), swipe.getTouchDuration());
         return this.stepExecutorResponse;
+
     }
 }

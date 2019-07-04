@@ -1,50 +1,57 @@
 package com.ebricks.script.model.event;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SwipeEvent extends Event {
 
-    private int startPointX;
-    private int startPointY;
-    private int endPointX;
-    private int endPointY;
-    private int duration;
+    private int startX;
+    private int startY;
+    private int endX;
+    private int endY;
+    private int touchDuration;
 
-    public int getDuration() {
-        return duration;
+    public SwipeEvent(){
+        setType("swipe");
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public int getStartX() {
+        return startX;
     }
 
-    public int getStartPointX() {
-        return startPointX;
+    public void setStartX(int startX) {
+        this.startX = startX;
     }
 
-    public void setStartPointX(int startPointX) {
-        this.startPointX = startPointX;
+    public int getStartY() {
+        return startY;
     }
 
-    public int getStartPointY() {
-        return startPointY;
+    public void setStartY(int startY) {
+        this.startY = startY;
     }
 
-    public void setStartPointY(int startPointY) {
-        this.startPointY = startPointY;
+    public int getEndX() {
+        return endX;
     }
 
-    public int getEndPointX() {
-        return endPointX;
+    public void setEndX(int endX) {
+        this.endX = endX;
     }
 
-    public void setEndPointX(int endPointX) {
-        this.endPointX = endPointX;
+    public int getEndY() {
+        return endY;
     }
 
-    public int getEndPointY() {
-        return endPointY;
+    public void setEndY(int endY) {
+        this.endY = endY;
     }
 
-    public void setEndPointY(int endPointY) {
-        this.endPointY = endPointY;
+    public int getTouchDuration() {
+        return touchDuration;
+    }
+
+    public void setTouchDuration(int touchDuration) {
+        this.touchDuration = touchDuration;
     }
 }
